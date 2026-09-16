@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10152b">
+<title>Hypnosite — Guided Relaxation</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a32;--panel2:#182342;--text:#eef2ff;--muted:#aeb8d6;--accent:#9aa8ff;--accent2:#c3b5ff;--danger:#ffb4b4;--shadow:0 18px 60px #0006}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 50% 0,#26345d 0,#0b1020 48%);color:var(--text);min-height:100vh}button{font:inherit;cursor:pointer}.wrap{width:min(1050px,92%);margin:auto}.hero{text-align:center;padding:70px 0 38px}.eyebrow{letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-size:.78rem;font-weight:800}.hero h1{font-size:clamp(2.8rem,8vw,5.5rem);line-height:.95;margin:16px 0;background:linear-gradient(120deg,#fff,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:680px;margin:20px auto;color:var(--muted);font-size:1.08rem;line-height:1.7}.notice{background:#151d38;border:1px solid #ffffff18;border-radius:18px;padding:16px 18px;text-align:left;box-shadow:var(--shadow);margin:24px auto;max-width:760px}.notice strong{color:#fff}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin:24px 0 70px}.card{background:linear-gradient(145deg,#141d37ee,#0e1529ee);border:1px solid #ffffff16;border-radius:24px;padding:26px;box-shadow:var(--shadow);backdrop-filter:blur(10px)}.card h2{margin-top:0}.muted{color:var(--muted)}.session{min-height:390px;display:flex;flex-direction:column;justify-content:space-between}.phase{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:800}.script{font-size:1.25rem;line-height:1.85;margin:24px 0}.controls{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:12px 17px;background:var(--panel2);color:var(--text);border:1px solid #ffffff16}.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#10152b;font-weight:800}.btn.stop{background:#42212a;color:#ffdede}.btn:disabled{opacity:.45;cursor:not-allowed}.progress{height:8px;background:#ffffff12;border-radius:99px;overflow:hidden;margin:20px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .2s}.timer{font-variant-numeric:tabular-nums;font-size:2.5rem;font-weight:800}.steps{display:grid;gap:10px}.step{padding:14px;border-radius:14px;background:#ffffff07;border:1px solid #ffffff0d}.step b{display:block;margin-bottom:4px}.library{display:grid;gap:12px}.script-btn{text-align:left;width:100%;padding:17px;border-radius:16px;background:#ffffff08;color:var(--text);border:1px solid #ffffff12}.script-btn:hover{background:#ffffff12}.footer{padding:0 0 45px;text-align:center;color:var(--muted);font-size:.9rem}@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding-top:45px}.script{font-size:1.1rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<header class="hero wrap">
+<div class="eyebrow">A quiet place to focus</div>
+<h1>Hypnosite</h1>
+<p>Guided relaxation and focused-attention exercises designed to be voluntary, calm, and easy to follow.</p>
+<div class="notice"><strong>Stay in control.</strong> These exercises are for relaxation and concentration. You can open your eyes, move, pause, or stop at any time. Never use a guided exercise while driving or doing anything that requires your full attention.</div>
+</header>
+<main class="wrap">
+<div class="grid">
+<section class="card session" aria-live="polite">
+<div>
+<div class="phase" id="phase">Ready</div>
+<div class="timer" id="timer">05:00</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="script" id="script">Choose “Start 5-minute session” when you're comfortably seated and ready.</div>
+</div>
+<div class="controls">
+<button class="btn primary" id="start">Start 5-minute session</button>
+<button class="btn" id="pause" disabled>Pause</button>
+<button class="btn stop" id="stop" disabled>Stop</button>
+</div>
+</section>
+<aside class="card">
+<h2>How it works</h2>
+<div class="steps">
+<div class="step"><b>1. Settle</b><span class="muted">Get comfortable and take a few slow breaths.</span></div>
+<div class="step"><b>2. Focus</b><span class="muted">Follow the words without trying to force an experience.</span></div>
+<div class="step"><b>3. Relax</b><span class="muted">Let your attention become calm and steady.</span></div>
+<div class="step"><b>4. Return</b><span class="muted">Finish feeling awake, comfortable, and ready to continue your day.</span></div>
+</div>
+</aside>
+</div>
+<section class="card" style="margin-bottom:24px">
+<h2>Guided scripts</h2>
+<p class="muted">Pick an exercise to load it into the session player.</p>
+<div class="library">
+<button class="script-btn" data-script="relax"><b>🌙 5-Minute Relaxation</b><br><span class="muted">A gentle beginner exercise for calm and focus.</span></button>
+<button class="script-btn" data-script="focus"><b>🎯 Focus Reset</b><br><span class="muted">A short exercise for settling distractions and returning attention to one task.</span></button>
+<button class="script-btn" data-script="confidence"><b>✨ Confidence Visualization</b><br><span class="muted">A positive visualization exercise centered on a goal you choose.</span></button>
+</div>
+</section>
+</main>
+<footer class="footer wrap">Hypnosite • Voluntary relaxation, focused attention, and visualization.</footer>
+<script>
+const scripts={
+relax:[
+['Arrive','Take a comfortable seat and let yourself settle in. There is nothing you need to prove and nothing you need to force.'],
+['Breathe','Take a slow, comfortable breath in... and slowly let it out. Again, breathe in... and let it go.'],
+['Focus','Let your attention rest on one spot, or simply on the sound of my words. If your mind wanders, that is okay. Gently return your attention.'],
+['Relax','Notice your shoulders. Let them soften. Let that comfortable feeling move through your arms, hands, face, and jaw. Allow your body to become a little more comfortable.'],
+['Deepen','With each comfortable breath, allow yourself to become calmer and more focused. You remain completely in control. You can move or stop whenever you choose.'],
+['Imagine','Picture a simple place where you feel comfortable. Notice a color, a sound, or a feeling that belongs there. There is no right way to imagine it.'],
+['Return','Take another slow breath. Begin noticing the room around you. Feel your hands and feet. When you are ready, open your eyes, stretch if you want to, and return feeling awake and comfortable.']
+],
+focus:[
+['Arrive','Sit comfortably. Choose one simple task you want to give your attention to after this exercise.'],
+['Breathe','Take three slow, comfortable breaths. With each exhale, let unnecessary tension soften.'],
+['One thing','For a moment, there is only one thing to notice: your breathing. When another thought appears, acknowledge it and gently return.'],
+['Clear','Imagine setting distracting thoughts aside temporarily, like placing notes on a desk to review later. You do not need to solve everything right now.'],
+['Choose','Bring your chosen task to mind. Imagine taking the first small, realistic step toward it. No pressure—just one step.'],
+['Return','Take a breath and notice the room. When you open your eyes, keep the idea of one small next step with you.']
+],
+confidence:[
+['Arrive','Settle comfortably and take a slow breath. Think of a situation where you would like to feel more confident.'],
+['Picture','Imagine yourself approaching that situation calmly. You do not have to imagine perfection—just a version of yourself taking a useful step.'],
+['Details','Notice how you might stand, breathe, speak, or focus. Choose only details that feel natural and believable to you.'],
+['Strength','Remember a time you handled something difficult or learned something new. Let that memory remind you that progress can happen one step at a time.'],
+['Practice','Imagine taking your next small step with patience and attention. You can adjust, learn, and try again.'],
+['Return','Take a comfortable breath. Notice the room, your hands, and your feet. Open your eyes when ready and carry one practical next step into your day.']
+]};
+let selected='relax',running=false,paused=false,startTime=0,elapsed=0,raf=null;const total=300000;
+const $=id=>document.getElementById(id);const start=$('start'),pause=$('pause'),stop=$('stop');
+function setScript(i=0){const s=scripts[selected];$('phase').textContent=s[i][0];$('script').textContent=s[i][1]}
+function render(){const left=Math.max(0,total-elapsed);const sec=Math.ceil(left/1000);$('timer').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');$('bar').style.width=Math.min(100,elapsed/total*100)+'%';if(running&&!paused){const idx=Math.min(scripts[selected].length-1,Math.floor(elapsed/(total/scripts[selected].length)));setScript(idx)}if(elapsed>=total){finish();return}if(running&&!paused)raf=requestAnimationFrame(tick)}
+function tick(now){elapsed=now-startTime;render()}
+function begin(){if(!running){running=true;paused=false;elapsed=0;startTime=performance.now();start.textContent='Restart session';pause.disabled=false;stop.disabled=false;pause.textContent='Pause';raf=requestAnimationFrame(tick)}else if(paused){paused=false;startTime=performance.now()-elapsed;pause.textContent='Pause';raf=requestAnimationFrame(tick)}}
+function togglePause(){if(!running)return;if(paused){paused=false;startTime=performance.now()-elapsed;pause.textContent='Pause';raf=requestAnimationFrame(tick)}else{paused=true;cancelAnimationFrame(raf);pause.textContent='Resume'}}
+function finish(){running=false;paused=false;cancelAnimationFrame(raf);elapsed=total;$('phase').textContent='Complete';$('script').textContent='The session is complete. Take a breath, look around, and continue when you feel ready.';start.textContent='Start again';pause.disabled=true;stop.disabled=true;render()}
+function reset(){running=false;paused=false;cancelAnimationFrame(raf);elapsed=0;$('phase').textContent='Ready';$('timer').textContent='05:00';$('bar').style.width='0%';$('script').textContent='Choose “Start 5-minute session” when you\'re comfortably seated and ready.';start.textContent='Start 5-minute session';pause.disabled=true;stop.disabled=true}
+start.onclick=begin;pause.onclick=togglePause;stop.onclick=reset;
+document.querySelectorAll('[data-script]').forEach(b=>b.onclick=()=>{selected=b.dataset.script;reset();setScript(0);document.querySelector('.session').scrollIntoView({behavior:'smooth',block:'center'})});
+setScript(0);
+</script>
+</body>
+</html>
